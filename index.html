@@ -1,0 +1,150 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sidequest</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- welcome screen -->
+  <div id="welcome-screen" class="hidden">
+    <div id="welcome-box">
+      <h1>side<span>quest</span></h1>
+      <p>your personal game diary</p>
+      <div id="welcome-form">
+        <label>choose a username to get started</label>
+        <input type="text" id="username-input" placeholder="e.g. player1, jenzkie..." maxlength="20">
+        <button id="username-submit-btn">Let's go →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrapper">
+    <header>
+      <div class="header-left">
+        <h1>side<span>quest</span></h1>
+        <p>your game diary</p>
+      </div>
+      <div class="header-right">
+        <span class="username-badge">
+          <span class="username-avatar" id="username-avatar"></span>
+          <span id="current-username"></span>
+        </span>
+        <button id="change-user-btn" title="Switch user">⇄</button>
+        <button id="add-game-btn">+ Log game</button>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="hero-sub">welcome back,</div>
+      <div class="hero-title"><span id="hero-username"></span>'s game diary</div>
+    </div>
+
+    <section id="stats">
+      <div class="stat">
+        <span class="stat-number" id="stat-games">0</span>
+        <span class="stat-label">games logged</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="stat-hours">0h</span>
+        <span class="stat-label">total playtime</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" id="stat-rating">—</span>
+        <span class="stat-label">avg rating</span>
+      </div>
+    </section>
+
+    <section id="filters">
+      <button class="filter-btn active" data-status="all">All</button>
+      <button class="filter-btn" data-status="playing">Playing</button>
+      <button class="filter-btn" data-status="completed">Completed</button>
+      <button class="filter-btn" data-status="backlog">Backlog</button>
+      <button class="filter-btn" data-status="dropped">Dropped</button>
+    </section>
+
+    <section id="game-list"></section>
+  </div>
+
+  <!-- Log a game modal -->
+  <div id="modal-overlay" class="hidden">
+    <div id="modal">
+      <div class="modal-header">
+        <h2>Log a game</h2>
+        <button id="close-modal-btn">✕</button>
+      </div>
+      <label>Title</label>
+      <input type="text" id="input-title" placeholder="Search for a game...">
+      <div id="search-results"></div>
+      <label>Platform</label>
+      <select id="input-platform">
+        <option value="PC">PC</option>
+        <option value="PS5">PS5</option>
+        <option value="Xbox">Xbox</option>
+        <option value="Switch">Switch</option>
+        <option value="Mobile">Mobile</option>
+        <option value="Other">Other</option>
+      </select>
+      <label>Status</label>
+      <select id="input-status">
+        <option value="playing">Playing</option>
+        <option value="completed">Completed</option>
+        <option value="backlog">Backlog</option>
+        <option value="dropped">Dropped</option>
+      </select>
+      <label>Hours played</label>
+      <input type="number" id="input-hours" placeholder="0" min="0">
+      <label>Rating</label>
+      <div class="star-picker">
+        <span class="star-pick" data-value="1">★</span>
+        <span class="star-pick" data-value="2">★</span>
+        <span class="star-pick" data-value="3">★</span>
+        <span class="star-pick" data-value="4">★</span>
+        <span class="star-pick" data-value="5">★</span>
+      </div>
+      <label>Review (optional)</label>
+      <textarea id="input-review" rows="3" placeholder="What did you think?"></textarea>
+      <button id="save-game-btn">Save entry</button>
+    </div>
+  </div>
+
+  <!-- Game detail modal -->
+  <div id="detail-overlay" class="hidden">
+    <div id="detail-modal">
+      <div id="detail-bg"></div>
+      <div id="detail-content">
+        <button id="detail-close">✕</button>
+        <div id="detail-top">
+          <img id="detail-cover" src="" alt="">
+          <div id="detail-info">
+            <h2 id="detail-title"></h2>
+            <span id="detail-status" class="game-status"></span>
+            <div id="detail-meta"></div>
+            <div id="detail-rating"></div>
+          </div>
+        </div>
+        <div id="detail-review"></div>
+        <div id="detail-actions">
+          <button id="detail-edit-btn"> Edit</button>
+          <button id="detail-delete-btn"> Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- confirm dialog -->
+<div id="confirm-overlay" class="hidden">
+  <div id="confirm-box">
+    <p id="confirm-message"></p>
+    <div id="confirm-actions">
+      <button id="confirm-cancel">Cancel</button>
+      <button id="confirm-ok">Confirm</button>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
