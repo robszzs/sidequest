@@ -701,7 +701,7 @@ header {
 #confirm-ok:hover { background: rgba(239, 68, 68, 0.22); }
 
 .warning {
-  color: #FF6B5B;
+  color: #FFB347;
   background-color: rgba(255, 107, 91, 0.1);
   border: 1px solid rgba(255, 107, 91, 0.3);
   border-radius: 8px;
